@@ -10,12 +10,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(indexes = @Index(name = "user_email_index", columnList = "email"))
+//@Table(indexes = @Index(name = "user_email_index", columnList = "email"))
 public class Users {
 
     @Id
@@ -41,6 +42,14 @@ public class Users {
     @UpdateTimestamp
     private LocalDate updated;
 
+    @ManyToMany
+    private List<Book> wishList;
+
+    @ManyToMany
+    private List<Book> readingList;
+
+    @OneToMany(mappedBy = "Reviewer")
+    private List<Review> reviews;
 
 
 }

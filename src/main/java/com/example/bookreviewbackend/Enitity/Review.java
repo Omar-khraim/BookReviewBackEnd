@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.catalina.User;
 import org.hibernate.annotations.Check;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -21,7 +22,7 @@ public class Review {
     private long id;
 
     @ManyToOne
-    private Book bookId;
+    private Book book;
 
     private byte rating;
 
@@ -35,4 +36,7 @@ public class Review {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private LocalDateTime updated;
+
+    @ManyToOne
+    private Users Reviewer;
 }
