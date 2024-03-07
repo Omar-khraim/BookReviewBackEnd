@@ -4,21 +4,24 @@ import com.example.bookreviewbackend.DTO.ReviewReturnDTO;
 import com.example.bookreviewbackend.Enitity.Review;
 import com.example.bookreviewbackend.Repository.ReviewRepo;
 import com.example.bookreviewbackend.Service.ReviewService;
+import com.example.bookreviewbackend.Util.ListMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReviewServiceImp implements ReviewService {
 
     private final ReviewRepo reviewRepo;
     private final ModelMapper modelMapper;
+    private final ListMapper<Review, ReviewReturnDTO> listMapper;
 
-    ReviewServiceImp(ReviewRepo reviewRepo, ModelMapper modelMapper){
+    ReviewServiceImp(ReviewRepo reviewRepo, ModelMapper modelMapper, ListMapper<Review, ReviewReturnDTO> listMapper){
         this.reviewRepo = reviewRepo;
         this.modelMapper = modelMapper;
-
+        this.listMapper = listMapper;
     }
 
 
@@ -29,7 +32,9 @@ public class ReviewServiceImp implements ReviewService {
 
     @Override
     public List<ReviewReturnDTO> getAllReviews() {
-        return null;
+        return reviewRepo.findAll().stream().
+                map(e-> modelMapper.map(e, ReviewReturnDTO.class))
+                .collect(Collectors.toList());
     }
 
     @Override

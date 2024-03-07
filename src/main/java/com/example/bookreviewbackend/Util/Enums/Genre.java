@@ -1,4 +1,4 @@
-package com.example.bookreviewbackend.Enums;
+package com.example.bookreviewbackend.Util.Enums;
 
 public enum Genre {
     Action,
