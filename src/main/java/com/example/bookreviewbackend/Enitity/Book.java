@@ -1,6 +1,6 @@
 package com.example.bookreviewbackend.Enitity;
 
-import com.example.bookreviewbackend.Enums.Genre;
+import com.example.bookreviewbackend.Util.Enums.Genre;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
